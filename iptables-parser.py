@@ -30,7 +30,6 @@ class Rule(object):
 
     type=table_name,comment,policy,rule,end
     raw=string of iptables rule
-    seq=line NO.
 
     chain=INPUT,PREROUTING,FORWARD,OUTPUT,POSTROUTING
     method=ADD,INSERT
@@ -40,6 +39,7 @@ class Rule(object):
     dport=ports
     modules={module_name: {setting_name: value}, ...}
     target=DROP,ACCEPT,REJECT,LOG
+    reject-with=icmp-host-prohibited
     """
     def __init__(self, rule):
         # 判断类型
