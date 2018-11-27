@@ -2,7 +2,7 @@
 
 
 
-class Iptables(object):
+class ParsedIptables(object):
     """
     Iptables.rules中包含了所有rules，每一条rules有如下结构：
 
@@ -19,10 +19,11 @@ class Iptables(object):
     modules={module_name: {setting_name: value}, ...}
     target=DROP,ACCEPT,REJECT,LOG
     """
-    def __init__(self):
+    def __init__(self, iptables, file=False):
         rules = []
+        self.iptables_raw_lines = self._load_iptables(iptables, file=file)
 
-    def load_iptables(iptables, file=False):
+    def _load_iptables(self, iptables, file=False):
         """
         load iptables and return a list of eachline of iptables
         """
@@ -39,7 +40,8 @@ class Iptables(object):
 
         return result_list
 
-    def parse_iptables(iptables_list):
-        result_obj = Iptables()
+    def _parse_iptables(iptables_list):
+        return parsed_iptables
 
-        return result_obj
+
+if __name__ == '__main__':
